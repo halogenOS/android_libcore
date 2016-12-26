@@ -207,8 +207,8 @@ public final class Daemons {
                         FinalizerWatchdogDaemon.INSTANCE.wakeUp();
                     }
                     doFinalize(finalizingReference);
-                } catch (InterruptedException ignored) {
-                } catch (OutOfMemoryError ignored) {
+                } catch (InterruptedException | OutOfMemoryError ignored) {
+
                 }
             }
         }
@@ -267,10 +267,9 @@ public final class Daemons {
             while (!needToWork) {
                 try {
                     wait();
-                } catch (InterruptedException e) {
-                    // Daemon.stop may have interrupted us.
-                    return false;
-                } catch (OutOfMemoryError e) {
+                } catch (// Daemon.stop may have interrupted us.
+                        InterruptedException |
+                        OutOfMemoryError e) {
                     return false;
                 }
             }
@@ -312,11 +311,7 @@ public final class Daemons {
                 }
                 try {
                     Thread.sleep(sleepMills);
-                } catch (InterruptedException e) {
-                    if (!isRunning()) {
-                        return false;
-                    }
-                } catch (OutOfMemoryError ignored) {
+                } catch (InterruptedException | OutOfMemoryError e) {
                     if (!isRunning()) {
                         return false;
                     }
