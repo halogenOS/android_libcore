@@ -76,8 +76,8 @@ public final class Byte extends Number implements Comparable<Byte> {
 
     private static class ByteCache {
         private ByteCache(){}
-
-        static final Byte cache[] = new Byte[-(-128) + 127 + 1];
+                    /* -(-128) + 127 + 1 = 128 + 127 + 1 = 128 + 128 = 256 */
+        static final Byte cache[] = new Byte[256];
 
         static {
             for(int i = 0; i < cache.length; i++)
@@ -99,8 +99,7 @@ public final class Byte extends Number implements Comparable<Byte> {
      * @since  1.5
      */
     public static Byte valueOf(byte b) {
-        final int offset = 128;
-        return ByteCache.cache[(int)b + offset];
+        return ByteCache.cache[(int)b + 128 /* offset */];
     }
 
     /**

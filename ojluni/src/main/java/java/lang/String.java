@@ -928,11 +928,9 @@ public final class String
             String anotherString = (String) anObject;
             int n = count;
             if (n == anotherString.count) {
-                int i = 0;
-                while (n-- != 0) {
+                for (int i = 0; n-- != 0; i++) {
                     if (charAt(i) != anotherString.charAt(i))
                             return false;
-                    i++;
                 }
                 return true;
             }
