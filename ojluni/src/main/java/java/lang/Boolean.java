@@ -246,13 +246,11 @@ public final class Boolean implements java.io.Serializable,
      * @see     java.lang.System#getProperty(java.lang.String, java.lang.String)
      */
     public static boolean getBoolean(String name) {
-        boolean result = false;
         try {
-            result = toBoolean(System.getProperty(name));
-        } catch (IllegalArgumentException e) {
-        } catch (NullPointerException e) {
+            return toBoolean(System.getProperty(name));
+        } catch (IllegalArgumentException | NullPointerException e) {
+            return false;
         }
-        return result;
     }
 
     /**
@@ -290,7 +288,7 @@ public final class Boolean implements java.io.Serializable,
     }
 
     private static boolean toBoolean(String name) {
-        return ((name != null) && name.equalsIgnoreCase("true"));
+        return name != null && name.equalsIgnoreCase("true");
     }
 
     /**

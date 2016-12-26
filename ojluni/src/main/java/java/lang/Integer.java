@@ -331,6 +331,8 @@ public final class Integer extends Number implements Comparable<Integer> {
     public static String toString(int i) {
         if (i == Integer.MIN_VALUE)
             return "-2147483648";
+        else if (i == Integer.MAX_VALUE)
+            return "2147483647";
 
         // Android-changed: cache the string literal for small values.
         boolean negative = i < 0;
