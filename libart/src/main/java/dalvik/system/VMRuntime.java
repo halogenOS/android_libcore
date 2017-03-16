@@ -158,7 +158,7 @@ public final class VMRuntime {
      */
     public synchronized void setTargetSdkVersion(int targetSdkVersion) {
         this.targetSdkVersion = targetSdkVersion;
-        setTargetSdkVersionNative(this.targetSdkVersion);
+        setTargetSdkVersionNative(targetSdkVersion);
     }
 
     /**
